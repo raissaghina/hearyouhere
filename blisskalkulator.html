@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator</title>
+	<style>
+		body {
+	font-family: 'Roboto', sans-serif;
+	background-color: #FDF7C3; 
+}
+
+#calculator {
+	background: linear-gradient(to bottom left, #e6e7eb, #522c43);
+	border: 2px solid #ffffff;
+	border-radius: 10px;
+	padding: 20px;
+	margin: 50px auto;
+	max-width: 400px;
+	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+#result {
+	background-color: #F2B6A0;
+	border: 2px solid #b3c1ec;
+	border-radius: 10px;
+	padding: 10px;
+	color: #fff;
+	text-align: right;
+	font-size: 36px;
+	margin-bottom: 10px;
+}
+
+button {
+	background: linear-gradient(to bottom right, #77b4fa, #F0997D);
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	font-size: 24px;
+	height: 60px;
+	margin: 5px;
+	padding: 5px 20px;
+	transition: background-color 0.2s ease;
+	width: 50px;
+	position: relative;
+	overflow: hidden;
+}
+
+button:before {
+	content: '';
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	right: -10px;
+	bottom: -10px;
+	background: inherit;
+	filter: blur(30px);
+	z-index: -1;
+}
+
+button:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(to bottom right, #A75D5D, #FFC3A1);
+	filter: blur(10px);
+	z-index: -2;
+}
+
+button:hover {
+	background: linear-gradient(to bottom right, #FFC3A1, #A75D5D);
+}
+
+button:active {
+	background: linear-gradient(to bottom right, #A75D5D, #FFC3A1);
+	color: #fff;
+	outline: none;
+}
+
+	</style>
+</head>
+<body>
+	<div id="calculator">
+		<div id="result"></div>
+		<button onclick="addValue('1')">1</button>
+		<button onclick="addValue('2')">2</button>
+		<button onclick="addValue('3')">3</button>
+		<button onclick="addOperator('+')">+</button>
+		<br>
+		<button onclick="addValue('4')">4</button>
+		<button onclick="addValue('5')">5</button>
+		<button onclick="addValue('6')">6</button>
+		<button onclick="addOperator('-')">-</button>
+		<br>
+		<button onclick="addValue('7')">7</button>
+		<button onclick="addValue('8')">8</button>
+		<button onclick="addValue('9')">9</button>
+		<button onclick="addOperator('*')">*</button>
+		<br>
+		<button onclick="addValue('0')">0</button>
+		<button onclick="addOperator('/')">/</button>
+		<button onclick="calculate()">=</button>
+		<button onclick="clearResult()">C</button>
+	</div>
+
+	<script>
+		let result = document.getElementById('result');
+		let expression = '';
+
+		// Fungsi untuk menambahkan angka ke ekspresi
+		function addValue(value) {
+			expression += value;
+			result.innerText = expression;
+		}
+
+		// Fungsi untuk menambahkan operator ke ekspresi
+		function addOperator(operator) {
+			expression += operator;
+			result.innerText = expression;
+		}
+
+		// Fungsi untuk menghitung hasil ekspresi dan menampilkannya
+		function calculate() {
+			try {
+				result.innerText = eval(expression);
+				expression = '';
+			} catch (error) {
+				result.innerText = 'Error';
+			}
+		}
+
+		// Fungsi untuk menghapus hasil dan ekspresi yang sedang dibuat
+		function clearResult() {
+			result.innerText = '';
+			expression = '';
+		}
+	</script>
+</body>
+</html>
